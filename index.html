@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website Generator</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <h1><i class="fas fa-globe"></i> Portfolio Generator</h1>
+                <p>Create your professional portfolio in minutes</p>
+                <div class="theme-toggle">
+                    <button id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="container">
+                <!-- Step Indicator -->
+                <div class="steps-indicator">
+                    <div class="step active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-title">Choose Template</span>
+                    </div>
+                    <div class="step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-title">Fill Details</span>
+                    </div>
+                    <div class="step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-title">Customize</span>
+                    </div>
+                    <div class="step" data-step="4">
+                        <span class="step-number">4</span>
+                        <span class="step-title">Preview & Deploy</span>
+                    </div>
+                </div>
+
+                <!-- Step 1: Template Selection -->
+                <div class="step-content active" id="step1">
+                    <h2>Choose Your Template</h2>
+                    <div class="templates-grid">
+                        <div class="template-card" data-template="modern">
+                            <div class="template-preview">
+                                <div class="preview-header">Modern</div>
+                                <div class="preview-sections">
+                                    <div class="section"></div>
+                                    <div class="section"></div>
+                                    <div class="section"></div>
+                                </div>
+                            </div>
+                            <h3>Modern Developer</h3>
+                            <p>Clean, minimal design perfect for developers</p>
+                            <span class="template-badge">Free</span>
+                        </div>
+
+                        <div class="template-card" data-template="creative">
+                            <div class="template-preview creative-preview">
+                                <div class="preview-header">Creative</div>
+                                <div class="preview-sections">
+                                    <div class="section"></div>
+                                    <div class="section"></div>
+                                </div>
+                            </div>
+                            <h3>Creative Designer</h3>
+                            <p>Bold, colorful layout for designers and artists</p>
+                            <span class="template-badge">Free</span>
+                        </div>
+
+                        <div class="template-card" data-template="professional">
+                            <div class="template-preview professional-preview">
+                                <div class="preview-header">Professional</div>
+                                <div class="preview-sections">
+                                    <div class="section"></div>
+                                    <div class="section"></div>
+                                    <div class="section"></div>
+                                    <div class="section"></div>
+                                </div>
+                            </div>
+                            <h3>Business Professional</h3>
+                            <p>Corporate-style design for business professionals</p>
+                            <span class="template-badge premium">Premium</span>
+                        </div>
+                    </div>
+                    <button class="next-btn" id="nextToStep2" disabled>Continue to Details</button>
+                </div>
+
+                <!-- Step 2: Personal Details -->
+                <div class="step-content" id="step2">
+                    <h2>Tell Us About Yourself</h2>
+                    <form class="details-form" id="detailsForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="jobTitle">Job Title *</label>
+                                <input type="text" id="jobTitle" placeholder="e.g. Full Stack Developer" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" id="location" placeholder="City, Country">
+                            </div>
+                            <div class="form-group">
+                                <label for="website">Website/Portfolio URL</label>
+                                <input type="url" id="website">
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="bio">About Me *</label>
+                            <textarea id="bio" rows="4" placeholder="Write a brief description about yourself and your expertise..." required></textarea>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="skills">Skills (comma-separated) *</label>
+                            <input type="text" id="skills" placeholder="JavaScript, React, Node.js, Python, Design..." required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="profileImage">Profile Image</label>
+                            <input type="file" id="profileImage" accept="image/*">
+                            <div class="file-preview" id="imagePreview"></div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="prev-btn" id="backToStep1">Previous</button>
+                            <button type="button" class="next-btn" id="nextToStep3">Continue to Customization</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Step 3: Customization -->
+                <div class="step-content" id="step3">
+                    <h2>Customize Your Portfolio</h2>
+                    <div class="customization-grid">
+                        <div class="customization-panel">
+                            <h3>Color Theme</h3>
+                            <div class="color-themes">
+                                <div class="color-theme active" data-theme="blue">
+                                    <div class="color-preview" style="background: linear-gradient(45deg, #3b82f6, #1d4ed8)"></div>
+                                    <span>Ocean Blue</span>
+                                </div>
+                                <div class="color-theme" data-theme="purple">
+                                    <div class="color-preview" style="background: linear-gradient(45deg, #8b5cf6, #7c3aed)"></div>
+                                    <span>Royal Purple</span>
+                                </div>
+                                <div class="color-theme" data-theme="green">
+                                    <div class="color-preview" style="background: linear-gradient(45deg, #10b981, #059669)"></div>
+                                    <span>Emerald Green</span>
+                                </div>
+                                <div class="color-theme" data-theme="orange">
+                                    <div class="color-preview" style="background: linear-gradient(45deg, #f59e0b, #d97706)"></div>
+                                    <span>Sunset Orange</span>
+                                </div>
+                            </div>
+
+                            <h3>Sections to Include</h3>
+                            <div class="sections-checklist">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="includeAbout" checked disabled>
+                                    <span>About Me (Required)</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="includeSkills" checked disabled>
+                                    <span>Skills (Required)</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="includeProjects" checked>
+                                    <span>Projects</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="includeResume" checked>
+                                    <span>Resume/Experience</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="includeContact" checked disabled>
+                                    <span>Contact (Required)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="projects-panel">
+                            <h3>Projects (Optional)</h3>
+                            <div id="projectsList">
+                                <div class="project-item">
+                                    <input type="text" placeholder="Project Name" class="project-name">
+                                    <input type="text" placeholder="Description" class="project-desc">
+                                    <input type="url" placeholder="Project URL (optional)" class="project-url">
+                                    <button type="button" class="remove-project">×</button>
+                                </div>
+                            </div>
+                            <button type="button" id="addProject" class="add-btn">+ Add Project</button>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="prev-btn" id="backToStep2">Previous</button>
+                        <button type="button" class="next-btn" id="nextToStep4">Preview Portfolio</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Preview & Deploy -->
+                <div class="step-content" id="step4">
+                    <h2>Preview & Deploy</h2>
+                    <div class="preview-actions">
+                        <button id="generatePreview" class="preview-btn">
+                            <i class="fas fa-eye"></i> Generate Preview
+                        </button>
+                        <button id="downloadZip" class="download-btn">
+                            <i class="fas fa-download"></i> Download ZIP
+                        </button>
+                        <button id="deployPortfolio" class="deploy-btn">
+                            <i class="fas fa-rocket"></i> Deploy to Web
+                        </button>
+                    </div>
+
+                    <div class="preview-container" id="previewContainer">
+                        <div class="preview-placeholder">
+                            <i class="fas fa-eye"></i>
+                            <p>Click "Generate Preview" to see your portfolio</p>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="prev-btn" id="backToStep3">Previous</button>
+                        <button type="button" class="success-btn" id="finishPortfolio">Complete Portfolio</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Premium Upgrade Modal -->
+        <div class="modal" id="premiumModal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2><i class="fas fa-crown"></i> Upgrade to Premium</h2>
+                <p>Unlock premium templates and advanced features:</p>
+                <ul>
+                    <li>5+ Premium Templates</li>
+                    <li>Custom Domain Support</li>
+                    <li>Advanced Analytics</li>
+                    <li>Priority Support</li>
+                    <li>White-label Options</li>
+                </ul>
+                <div class="pricing">
+                    <div class="price">$9.99/month</div>
+                    <button class="upgrade-btn" onclick="openPayPalPayment()">Upgrade Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
